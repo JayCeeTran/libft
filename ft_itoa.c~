@@ -21,25 +21,25 @@ char	*ft_itoa(int n)
 {
 	char	*str;
 	int	i;
+	int	j;
 
+	j = n;
 	i = ft_intlen(n);
-	if (n == -2147483648)
-		return ("-2147483648");
 	str = (char *)malloc(sizeof(char) * (i + 1));
 	if (!str)
 		return (NULL);
 	str[i--] = '\0';
-	if (n < 0)
+	if (j < 0)
 	{
 		str[0] = '-';
-		n = -n;
+		j = -j;
 	}
-	if (n == 0) 
+	if (j == 0) 
 		str[0] = '0';
-	while (n > 0)
+	while (j > 0)
 	{
-		str[i--] = (n % 10) + '0';
-		n /= 10;
+		str[i--] = (j % 10) + '0';
+		j /= 10;
 	}
 	return str;
 }

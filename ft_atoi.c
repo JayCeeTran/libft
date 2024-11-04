@@ -32,8 +32,11 @@ static int	check_sign(char *str, int *i)
 		else
 			break ;
 	}
-	if (str[(*i)++] == '-')
+	if (str[(*i)] == '-')
+	{
 		sign *= -1;
+		(*i)++;
+	}
 	else if (str[(*i)] == '+')
 		(*i)++;
 	return (sign);
@@ -44,14 +47,26 @@ int	ft_atoi(char *str)
 	int	i;
 	int	sign;
 	int	value;
+	int	temp;
 
 	value = 0;
 	i = 0;
 	sign = check_sign(str, &i);
+	while (str[i] == 0)
+		i++;
 	while (str[i] <= '9' && str[i] >= '0')
 	{
+		temp = str[i] - 48;
+		if (value > (INT_MAX - temp) / 10)
+		{
+			if (sign == -1)
+				return (INT_MIN);
+			else
+				return (INT_MAX);
+		}
 		value = value * 10 + (str[i] - 48);
 		i++;
 	}
 	return (value * sign);
+
 }
