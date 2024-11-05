@@ -9,7 +9,7 @@
 #define error3 printf("Error test 3\n")
 #define error4 printf("Error test 4\n")
 #define testi printf("Test %d OK!\n", i + 1)
-#define errori printf("error test %d!\n", i + 1)
+#define errori printf("Error test %d!\n", i + 1)
 
 void	test_ft_atoi()
 {

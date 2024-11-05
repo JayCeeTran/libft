@@ -1,29 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcmp.c                                        :+:      :+:    :+:   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jtran <jtran@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/05 15:52:10 by jtran             #+#    #+#             */
-/*   Updated: 2024/11/05 15:52:11 by jtran            ###   ########.fr       */
+/*   Created: 2024/11/05 13:54:31 by jtran             #+#    #+#             */
+/*   Updated: 2024/11/05 15:52:37 by jtran            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "libft.h"
 
-int	ft_strcmp(char *s1, char *s2)
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	while(*s1)
+	unsigned int	i;
+	int				len;
+	char			*str;
+
+	i = 0;
+	len = ft_strlen(s);
+	str = (char *)malloc(len + 1);
+	if (!str)
+		return (NULL);
+	while (s[i])
 	{
-		if (*s1 == *s2)
-		{
-			s2++;
-			s1++;
-		}
-		else
-			return (*s1 - *s2);
+		str[i] = (*f)(i, s[i]);
+		i++;
 	}
-	return (0);
+	str[i] = '\0';
+	return (str);
 }
+
+/*int	main(void)
+{
+	char	str[] = "HELLO World";
+	char *result;
+	result = ft_strmapi(str, fft_tolower);
+	printf("%s\n", result);
+}*/

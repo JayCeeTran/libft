@@ -1,29 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcmp.c                                        :+:      :+:    :+:   */
+/*   ft_striteri.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jtran <jtran@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/05 15:52:10 by jtran             #+#    #+#             */
-/*   Updated: 2024/11/05 15:52:11 by jtran            ###   ########.fr       */
+/*   Created: 2024/11/05 14:38:15 by jtran             #+#    #+#             */
+/*   Updated: 2024/11/05 16:03:44 by jtran            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "libft.h"
 
-int	ft_strcmp(char *s1, char *s2)
+void	ft_striteri(char *s, void (*f)(unsigned int, char *))
 {
-	while(*s1)
+	unsigned int	i;
+
+	i = 0;
+	if (!s || !f)
+		return ;
+	while (s[i])
 	{
-		if (*s1 == *s2)
-		{
-			s2++;
-			s1++;
-		}
-		else
-			return (*s1 - *s2);
+		(*f)(i, &s[i]);
+		i++;
 	}
-	return (0);
 }

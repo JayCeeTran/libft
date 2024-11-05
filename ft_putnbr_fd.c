@@ -1,29 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcmp.c                                        :+:      :+:    :+:   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jtran <jtran@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/05 15:52:10 by jtran             #+#    #+#             */
-/*   Updated: 2024/11/05 15:52:11 by jtran            ###   ########.fr       */
+/*   Created: 2024/11/05 16:15:58 by jtran             #+#    #+#             */
+/*   Updated: 2024/11/05 16:35:38 by jtran            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "libft.h"
 
-int	ft_strcmp(char *s1, char *s2)
+void	ft_putnbr_fd(int n, int fd)
 {
-	while(*s1)
-	{
-		if (*s1 == *s2)
-		{
-			s2++;
-			s1++;
-		}
-		else
-			return (*s1 - *s2);
+	int	divider;
+    int digit;
+
+	divider = 1;
+	if (n < 0)
+	{	
+		ft_putchar_fd('-', fd);
+		n *= (-1);
 	}
-	return (0);
+	while (n / divider > 9)
+		divider *= 10;
+	while (divider > 0)
+	{	
+		digit = n / divider + '0';
+        ft_putchar_fd(digit, fd);
+		n %= divider;
+		divider /= 10;
+	}
+}
+
+int	main(void)
+{
+	ft_putnbr_fd(1000, 1);
+    ft_putnbr_fd(-1000, 1);
+    ft_putnbr_fd(143430, 1);
 }
