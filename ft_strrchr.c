@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-static int	count_ch(char *str, int c)
+static int	count_ch(const char *str, int c)
 {
 	int	charcount;
 
@@ -26,20 +26,19 @@ static int	count_ch(char *str, int c)
 	return (charcount);
 }
 
-char	*ft_strrchr(char *str, int chr)
+char	*ft_strrchr(const char *str, int chr)
 {
 	int	pos_of_last_ch;
 	int	i;
 
 	i = 0;
 	pos_of_last_ch = count_ch(str, chr);
-	while (*str != '\0')
+	while (str[i] != '\0')
 	{
-		if (*str == chr)
+		if (str[i] == chr)
 			i++;
 		if (i == pos_of_last_ch)
-			return (str);
-		str++;
+			return ((char*)str);
 	}
 	return (NULL);
 }

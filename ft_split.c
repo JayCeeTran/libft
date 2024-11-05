@@ -12,123 +12,49 @@
 
 #include "libft.h"
 
-int	stringcount(char str, char *sep)
+static size_t	ft_countword(char const *s, char c)
 {
-	int	i;
+	size_t	count;
 
-	i = 0;
-	while (sep[i])
+	if (!*s)
+		return (0);
+	count = 0;
+	while (*s)
 	{
-		if (str == sep[i])
-			return (1);
-		i++;
+		while (*s == c)
+			s++;
+		if (*s)
+			count++;
+		while (*s != c && *s)
+			s++;
 	}
-	return (0);
+	return (count);
 }
 
-char	**stringcopy(char *str, char *charset, char **arr)
+char	**ft_split(char const *s, char c)
 {
-	int	i;
-	int	size;
-	int	j;
+	char	**lst;
+	size_t	word_len;
+	int		i;
 
+	lst = (char **)malloc((ft_countword(s, c) + 1) * sizeof(char *));
+	if (!s || !lst)
+		return (0);
 	i = 0;
-	j = 0;
-	while (str[i])
+	while (*s)
 	{
-		size = 0;
-		while (stringcount(str[i], charset) == 1 && str[i])
-			i++;
-		if (str[i] == '\0')
-			break ;
-		while (stringcount(str[i], charset) == 0 && str[i])
+		while (*s == c && *s)
+			s++;
+		if (*s)
 		{
-			arr[j][size] = str[i];
-			i++;
-			size++;
+			if (!ft_strchr(s, c))
+				word_len = ft_strlen(s);
+			else
+				word_len = ft_strchr(s, c) - s;
+			lst[i++] = ft_substr(s, 0, word_len);
+			s += word_len;
 		}
-		arr[j][size] = '\0';
-		j++;
 	}
-	arr[j] = 0;
-	return (arr);
+	lst[i] = NULL;
+	return (lst);
 }
-
-int	wordcount(char *str, char *charset)
-{
-	int	i;
-	int	wordscount;
-
-	i = 0;
-	wordscount = 0;
-	while (str[i])
-	{
-		while (stringcount(str[i], charset) == 1 && str[i])
-			i++;
-		if (str[i] == '\0')
-			break ;
-		wordscount++;
-		while (stringcount(str[i], charset) == 0 && str[i])
-			i++;
-	}
-	return (wordscount);
-}
-
-char	**malloc_strings(char *str, char *charset, char **arr)
-{
-	int	i;
-	int	size;
-	int	j;
-
-	i = 0;
-	size = 0;
-	j = 0;
-	while (str[i])
-	{
-		size = 0;
-		while (stringcount(str[i], charset) == 1 && str[i])
-			i++;
-		if (str[i] == '\0')
-			break ;
-		while (stringcount(str[i], charset) == 0 && str[i])
-		{
-			size++;
-			i++;
-		}
-		arr[j] = malloc(size + 1);
-		j++;
-	}
-	return (arr);
-}
-
-char	**ft_split(char *str, char *charset)
-{
-	int		wordscount;
-	char	**wordinarray;
-
-	wordscount = wordcount(str, charset);
-	wordinarray = malloc (sizeof(char *) * (wordscount + 1));
-	if (!wordinarray)
-		return (NULL);
-	malloc_strings(str, charset, wordinarray);
-	stringcopy(str, charset, wordinarray);
-	return (wordinarray);
-}
-
-/*int main()
-{
-	char    string[] = "bbaagaaabaaabgaaa63663";
-        char    sep[] = "bg";
-	char	**array;
-	int	i;
-	
-	i = 0;
-	array = ft_split(string, sep);
-	while (array[i] != 0)
-	{
-		printf("sting i is %s\n", array[i]);
-    		i++;
-    	}
-    	free (array); 
-    return 0;
-}*/

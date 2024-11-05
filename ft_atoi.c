@@ -20,7 +20,7 @@ static int	check_white(char c)
 	return (0);
 }
 
-static int	check_sign(char *str, int *i)
+static int	check_sign(const char *str, int *i)
 {
 	int	sign;
 
@@ -42,7 +42,7 @@ static int	check_sign(char *str, int *i)
 	return (sign);
 }
 
-int	ft_atoi(char *str)
+int	ft_atoi(const char *str)
 {
 	int	i;
 	int	sign;
