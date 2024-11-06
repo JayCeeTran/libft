@@ -58,7 +58,7 @@ char	**ft_split(const char *str, char c)
 	return (str_arr);
 }
 
-int	main(void)
+/*int	main(void)
 {
 	char	*str;
 	char	**arr;
@@ -73,4 +73,4 @@ int	main(void)
 		i++;
 	}
 	return (0);
-}
+}*/
