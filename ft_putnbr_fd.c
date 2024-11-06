@@ -23,6 +23,8 @@ void	ft_putnbr_fd(int n, int fd)
 		ft_putchar_fd('-', fd);
 		n *= (-1);
 	}
+	if (n == -2147483648)
+        	write (fd, "-2147483648", 11);
 	while (n / divider > 9)
 		divider *= 10;
 	while (divider > 0)

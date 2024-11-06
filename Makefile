@@ -10,7 +10,7 @@
 #                                                                              #
 # **************************************************************************** #
 
-CC = cc 
+CC = gcc 
 CFLAGS = -Wall -Wextra -Werror -I includes
 
 SRCS =	ft_atoi.c \

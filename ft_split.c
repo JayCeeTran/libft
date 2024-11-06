@@ -51,7 +51,7 @@ char	**ft_split(const char *str, char c)
 			str++;
 			poscount++;
 		}
-		str_arr[j] = ft_substr(str - poscount, 1, poscount);
+		str_arr[j] = ft_substr(str - poscount, 0, poscount);
 		j++;
 	}
 	str_arr[j] = NULL;

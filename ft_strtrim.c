@@ -23,25 +23,25 @@ static size_t	find_start(const char *str, const char *set)
 		j = 0;
 		while (set[j] && set[j] != str[i])
 			j++;
-		i++;
 		if (set[j] == '\0')
-			break ;
+            		break ;
+      		i++;
 	}
-	return (i - 1);
+    	return (i);
 }
 
-static size_t	find_end(const char *str, const char *set, int i)
+static size_t	find_end(const char *str, const char *set, size_t i)
 {
 	int	j;
 
 	while (i > 0)
 	{	
 		j = 0;
-		while (set[j] && set[j] != str[i - 1])
+        	while (set[j] && set[j] != str[i - 1])
 			j++;
-		i--;
+       		i--;
 		if (set[j] == '\0')
-			break ;
+            	break ;
 	}
 	return (i);
 }
@@ -56,10 +56,12 @@ char	*ft_strtrim(const char *str, const char *set)
 	i = 0;
 	start = find_start(str, set);
 	end = find_end(str, set, ft_strlen(str));
-	copy = (char *) malloc((ft_strlen(&str[start]) - end + 1) * sizeof(char));
+    	if (*str == '\0' || end <= start)
+        	return ((char*)str);
+    	copy = malloc(end - start + 2);
 	if (!copy)
 		return (NULL);
-	while (start <= end)
+   	while (start <= end)
 	{
 		copy[i] = str[start];
 		start++;

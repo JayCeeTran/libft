@@ -33,12 +33,15 @@ char	*ft_strrchr(const char *str, int chr)
 
 	i = 0;
 	pos_of_last_ch = count_ch(str, chr);
+	if (chr == '\0')
+		return ((char *) &str[ft_strlen(str)]);
 	while (str[i] != '\0')
 	{
 		if (str[i] == chr)
-			i++;
-		if (i == pos_of_last_ch)
+			pos_of_last_ch--;
+		if (pos_of_last_ch == 0)
 			return ((char *)str);
+		i++;
 	}
 	return (NULL);
 }
