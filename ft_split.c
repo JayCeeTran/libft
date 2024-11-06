@@ -5,56 +5,72 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: jtran <jtran@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/21 09:52:12 by jtran             #+#    #+#             */
-/*   Updated: 2024/08/22 17:25:48 by jtran            ###   ########.fr       */
+/*   Created: 2024/11/06 12:19:59 by jtran             #+#    #+#             */
+/*   Updated: 2024/11/06 14:10:27 by jtran            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static size_t	ft_countword(char const *s, char c)
+static size_t	word_count(const char *str, char c)
 {
 	size_t	count;
 
-	if (!*s)
-		return (0);
 	count = 0;
-	while (*s)
+	while (*str)
 	{
-		while (*s == c)
-			s++;
-		if (*s)
+		while (*str == c && *str)
+			str++;
+		if (*str)
 			count++;
-		while (*s != c && *s)
-			s++;
+		while (*str != c && *str)
+			str++;
 	}
 	return (count);
 }
 
-char	**ft_split(char const *s, char c)
+char	**ft_split(const char *str, char c)
 {
-	char	**lst;
-	size_t	word_len;
+	size_t	words;
+	char	**str_arr;
+	int		j;
+	int		poscount;
+
+	j = 0;
+	words = word_count(str, c);
+	str_arr = malloc((words + 1) * sizeof(char *));
+	if (!str_arr)
+		return (NULL);
+	while (*str)
+	{
+		poscount = 0;
+		while (*str == c && *str)
+			str++;
+		while (*str != c && *str)
+		{
+			str++;
+			poscount++;
+		}
+		str_arr[j] = ft_substr(str - poscount, 1, poscount);
+		j++;
+	}
+	str_arr[j] = NULL;
+	return (str_arr);
+}
+
+int	main(void)
+{
+	char	*str;
+	char	**arr;
 	int		i;
 
-	lst = (char **)malloc((ft_countword(s, c) + 1) * sizeof(char *));
-	if (!s || !lst)
-		return (0);
+	str = "Hello  World Moi";
 	i = 0;
-	while (*s)
+	arr = ft_split(str, ' ');
+	while (arr[i] != NULL)
 	{
-		while (*s == c && *s)
-			s++;
-		if (*s)
-		{
-			if (!ft_strchr(s, c))
-				word_len = ft_strlen(s);
-			else
-				word_len = ft_strchr(s, c) - s;
-			lst[i++] = ft_substr(s, 0, word_len);
-			s += word_len;
-		}
+		printf("%s\n", arr[i]);
+		i++;
 	}
-	lst[i] = NULL;
-	return (lst);
+	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: jtran <jtran@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 12:36:15 by jtran             #+#    #+#             */
-/*   Updated: 2024/10/29 12:51:47 by jtran            ###   ########.fr       */
+/*   Updated: 2024/11/06 14:12:03 by jtran            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ char	*ft_strrchr(const char *str, int chr)
 		if (str[i] == chr)
 			i++;
 		if (i == pos_of_last_ch)
-			return ((char*)str);
+			return ((char *)str);
 	}
 	return (NULL);
 }

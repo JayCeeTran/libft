@@ -6,18 +6,18 @@
 /*   By: jtran <jtran@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 16:13:12 by jtran             #+#    #+#             */
-/*   Updated: 2024/11/05 16:14:00 by jtran            ###   ########.fr       */
+/*   Updated: 2024/11/06 14:17:39 by jtran            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void ft_putendl_fd(char *s, int fd)
+void	ft_putendl_fd(char *s, int fd)
 {
-    while (*s)
-    {
-        write (fd, s, 1);
-        s++;
-    }
-    write (fd, '\n', 1);
+	while (*s)
+	{
+		write(fd, s, 1);
+		s++;
+	}
+	write(fd, '\n', 1);
 }

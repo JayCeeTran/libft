@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: jtran <jtran@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/31 12:19:30 by jtran             #+#    #+#             */
-/*   Updated: 2024/10/31 12:19:34 by jtran            ###   ########.fr       */
+/*   Created: 2024/11/06 14:30:17 by jtran             #+#    #+#             */
+/*   Updated: 2024/11/06 14:30:17 by jtran            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,11 @@
 char	*ft_strnstr(const char *str, const char *search, size_t n)
 {
 	size_t	i;
-	int	j;
+	size_t	j;
 
 	i = 0;
 	if (!search[i])
-		return ((char*)str);
+		return ((char *)str);
 	while (str[i] && i < n)
 	{
 		j = 0;
@@ -31,7 +31,7 @@ char	*ft_strnstr(const char *str, const char *search, size_t n)
 				break ;
 		}
 		if (search[j] == '\0')
-			return ((char*)&str[i]);
+			return ((char *)&str[i]);
 		i++;
 	}
 	return (NULL);
@@ -39,14 +39,14 @@ char	*ft_strnstr(const char *str, const char *search, size_t n)
 
 /*int main(void)
 {
-    char    string[] = "Try to";
-    char    str[] = "Try to1";
-    char *dest;
-    dest = ft_strnstr(string, str, 40);
-    
+	char    string[] = "Try to";
+	char    str[] = "Try to1";
+	char *dest;
+	dest = ft_strnstr(string, str, 40);
+
 
 	if (dest != NULL)
-    		printf("%s\n", dest);
-    	else if (dest == NULL)
-    		printf("its null");
+			printf("%s\n", dest);
+		else if (dest == NULL)
+			printf("its null");
 }*/

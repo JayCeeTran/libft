@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: jtran <jtran@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/31 11:01:14 by jtran             #+#    #+#             */
-/*   Updated: 2024/10/31 11:01:26 by jtran            ###   ########.fr       */
+/*   Created: 2024/11/06 14:30:48 by jtran             #+#    #+#             */
+/*   Updated: 2024/11/06 14:30:48 by jtran            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 static int	check_white(char c)
 {
-	if (c == '\n' || c == '\r' || c == ' '
-		|| c == '\f' || c == '\v' || c == '\t')
+	if (c == '\n' || c == '\r' || c == ' ' || c == '\f' || c == '\v'
+		|| c == '\t')
 		return (1);
 	return (0);
 }
@@ -68,5 +68,4 @@ int	ft_atoi(const char *str)
 		i++;
 	}
 	return (value * sign);
-
 }

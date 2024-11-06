@@ -6,7 +6,7 @@
 /*   By: jtran <jtran@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 12:05:54 by jtran             #+#    #+#             */
-/*   Updated: 2024/10/29 12:23:41 by jtran            ###   ########.fr       */
+/*   Updated: 2024/11/06 14:10:46 by jtran            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ char	*ft_strchr(const char *str, int search_str)
 	while (str[i] != '\0')
 	{
 		if (str[i] == search_str)
-			return ((char*)&str[i]);
+			return ((char *)&str[i]);
 		i++;
 	}
 	return (NULL);
