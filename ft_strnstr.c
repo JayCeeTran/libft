@@ -20,6 +20,8 @@ char	*ft_strnstr(const char *str, const char *search, size_t n)
 	i = 0;
 	if (!search[i])
 		return ((char *)str);
+	if ((!str || !search) && n == 0)
+		return (0);
 	while (str[i] && i < n)
 	{
 		j = 0;
@@ -36,17 +38,3 @@ char	*ft_strnstr(const char *str, const char *search, size_t n)
 	}
 	return (NULL);
 }
-
-/*int main(void)
-{
-	char    string[] = "Try to";
-	char    str[] = "Try to1";
-	char *dest;
-	dest = ft_strnstr(string, str, 40);
-
-
-	if (dest != NULL)
-			printf("%s\n", dest);
-		else if (dest == NULL)
-			printf("its null");
-}*/

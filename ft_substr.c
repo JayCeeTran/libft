@@ -18,11 +18,14 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	size_t		i;
 
 	i = 0;
-	if (len == 0 || start >= ft_strlen(s))
-		return (NULL);
 	temp = (char *) malloc(len * sizeof (char) + 1);
 	if (!temp)
 		return (NULL);
+	if (start >= ft_strlen(s) || len == 0)
+	{
+		*temp = '\0';
+		return (temp);
+	}
 	while (i < len && s[start + i])
 	{
 		temp[i] = s[start + i];
@@ -31,12 +34,3 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	temp[i] = '\0';
 	return (temp);
 }
-
-/*int	main (void)
-{
-	char	string[] = "ABCDEF";
-	char	*substr;
-
-	substr = ft_substr(string, 3, 3);
-	printf("%s\n", substr);
-}*/

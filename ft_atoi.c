@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: jtran <jtran@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/06 14:30:48 by jtran             #+#    #+#             */
-/*   Updated: 2024/11/06 14:30:48 by jtran            ###   ########.fr       */
+/*   Created: 2024/11/08 13:08:41 by jtran             #+#    #+#             */
+/*   Updated: 2024/11/08 13:08:41 by jtran            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,28 +44,24 @@ static int	check_sign(const char *str, int *i)
 
 int	ft_atoi(const char *str)
 {
-	int	i;
-	int	sign;
-	int	value;
-	int	temp;
+	int		i;
+	int		sign;
+	int		value;
+	long	temp;
 
 	value = 0;
 	i = 0;
 	sign = check_sign(str, &i);
-	while (str[i] == 0)
-		i++;
+	if (*str == '\0')
+		return (0);
 	while (str[i] <= '9' && str[i] >= '0')
 	{
-		temp = str[i] - 48;
-		if (value > (MAXINT - temp) / 10)
-		{
-			if (sign == -1)
-				return (MININT);
-			else
-				return (MAXINT);
-		}
-		value = value * 10 + (str[i] - 48);
-		i++;
+		temp = value;
+		if (temp > MAXINT)
+			return (-1);
+		else if (temp < MININT)
+			return (0);
+		value = value * 10 + (str[i++] - 48);
 	}
 	return (value * sign);
 }

@@ -35,13 +35,23 @@ char	*ft_strrchr(const char *str, int chr)
 	pos_of_last_ch = count_ch(str, chr);
 	if (chr == '\0')
 		return ((char *) &str[ft_strlen(str)]);
+	if (pos_of_last_ch == 0)
+		return (NULL);
 	while (str[i] != '\0')
 	{
 		if (str[i] == chr)
 			pos_of_last_ch--;
 		if (pos_of_last_ch == 0)
-			return ((char *)str);
+			return ((char *)&str[i]);
 		i++;
 	}
 	return (NULL);
 }
+/*int	main(void)
+{
+	char	str[] = "bonjour";
+	char	*dest;
+	
+	dest = ft_strrchr(str, 's');
+	printf("%s\n", dest);
+}*/

@@ -31,11 +31,3 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 	str[i] = '\0';
 	return (str);
 }
-
-/*int	main(void)
-{
-	char	str[] = "HELLO World";
-	char *result;
-	result = ft_strmapi(str, fft_tolower);
-	printf("%s\n", result);
-}*/

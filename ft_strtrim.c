@@ -6,7 +6,7 @@
 /*   By: jtran <jtran@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 11:40:04 by jtran             #+#    #+#             */
-/*   Updated: 2024/11/01 11:42:57 by jtran            ###   ########.fr       */
+/*   Updated: 2024/11/07 12:34:12 by jtran            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,15 +19,17 @@ static size_t	find_start(const char *str, const char *set)
 
 	i = 0;
 	while (str[i])
-	{	
+	{
 		j = 0;
 		while (set[j] && set[j] != str[i])
 			j++;
 		if (set[j] == '\0')
-            		break ;
-      		i++;
+			break ;
+		i++;
 	}
-    	return (i);
+	if (str[i] == '\0')
+		return (0);
+	return (i);
 }
 
 static size_t	find_end(const char *str, const char *set, size_t i)
@@ -35,13 +37,13 @@ static size_t	find_end(const char *str, const char *set, size_t i)
 	int	j;
 
 	while (i > 0)
-	{	
+	{
 		j = 0;
-        	while (set[j] && set[j] != str[i - 1])
+		while (set[j] && set[j] != str[i - 1])
 			j++;
-       		i--;
+		i--;
 		if (set[j] == '\0')
-            	break ;
+			break ;
 	}
 	return (i);
 }
@@ -56,16 +58,20 @@ char	*ft_strtrim(const char *str, const char *set)
 	i = 0;
 	start = find_start(str, set);
 	end = find_end(str, set, ft_strlen(str));
-    	if (*str == '\0' || end <= start)
-        	return ((char*)str);
-    	copy = malloc(end - start + 2);
+	if (*str == '\0')
+		return ((char *)str);
+	copy = malloc(end - start + 2);
 	if (!copy)
 		return (NULL);
-   	while (start <= end)
+	if (start == end)
 	{
-		copy[i] = str[start];
+		*copy = '\0';
+		return (copy);
+	}
+	while (start <= end)
+	{
+		copy[i++] = str[start];
 		start++;
-		i++;
 	}
 	copy[i] = '\0';
 	return (copy);

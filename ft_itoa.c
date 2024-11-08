@@ -6,7 +6,7 @@
 /*   By: jtran <jtran@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 15:51:55 by jtran             #+#    #+#             */
-/*   Updated: 2024/11/06 14:19:33 by jtran            ###   ########.fr       */
+/*   Updated: 2024/11/08 13:08:20 by jtran            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,27 +31,27 @@ static int	ft_intlen(int n)
 
 char	*ft_itoa(int n)
 {
-	char	*str;
-	int		i;
+	char		*str;
+	int			i;
+	long long	j;
 
+	j = n;
 	i = ft_intlen(n);
-	if (n == -2147483648)
-		return ("-2147483648");
 	str = (char *)malloc(sizeof(char) * (i + 1));
 	if (!str)
 		return (NULL);
 	str[i--] = '\0';
-	if (n < 0)
+	if (j < 0)
 	{
 		str[0] = '-';
-		n = -n;
+		j = -j;
 	}
 	if (n == 0)
 		str[0] = '0';
-	while (n > 0)
+	while (j > 0)
 	{
-		str[i--] = (n % 10) + '0';
-		n /= 10;
+		str[i--] = (j % 10) + '0';
+		j /= 10;
 	}
 	return (str);
 }

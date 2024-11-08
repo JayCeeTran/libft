@@ -6,11 +6,11 @@
 #    By: jtran <jtran@student.hive.fi>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/19 14:38:58 by jtran             #+#    #+#              #
-#    Updated: 2024/08/19 14:43:42 by jtran            ###   ########.fr        #
+#    Updated: 2024/11/07 15:24:53 by jtran            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-CC = gcc 
+CC = cc 
 CFLAGS = -Wall -Wextra -Werror -I includes
 
 SRCS =	ft_atoi.c \
@@ -52,13 +52,13 @@ OBJ = $(SRCS:.c=.o)
 
 RM = rm -f
 TEST = testfile.c
-LIBFT = libft.a
+NAME = libft.a
 EXECU = a.exe
 
-all: $(LIBFT)
+all: $(NAME)
 
-$(LIBFT): $(OBJ)
-	ar rcs $(LIBFT) $(OBJ)
+$(NAME): $(OBJ)
+	ar rcs $(NAME) $(OBJ)
 
 test: $(EXECU)
 	.\a.exe
@@ -69,5 +69,9 @@ $(EXECU): $(LIBFT) $(TEST)
 clean:
 	$(RM) $(OBJ)
 fclean: clean
-	$(RM) $(LIBFT) $(EXECU)
+	$(RM) $(NAME) $(EXECU)
+
+so:
+	$(CC) -nostartfiles -fPIC $(CFLAGS) $(SRCS)
+	gcc -nostartfiles -shared -o libft.so $(OBJ)
 re: fclean all

@@ -41,7 +41,7 @@ char	**ft_split(const char *str, char c)
 	str_arr = malloc((words + 1) * sizeof(char *));
 	if (!str_arr)
 		return (NULL);
-	while (*str)
+	while (*str && words-- > 0)
 	{
 		poscount = 0;
 		while (*str == c && *str)
@@ -66,7 +66,7 @@ char	**ft_split(const char *str, char c)
 
 	str = "Hello  World Moi";
 	i = 0;
-	arr = ft_split(str, ' ');
+	arr = ft_split("   lorem  Suspendisse   ", ' ');
 	while (arr[i] != NULL)
 	{
 		printf("%s\n", arr[i]);
