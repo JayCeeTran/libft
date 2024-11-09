@@ -57,9 +57,9 @@ int	ft_atoi(const char *str)
 	while (str[i] <= '9' && str[i] >= '0')
 	{
 		temp = value;
-		if (temp > MAXINT)
+		if (temp > INT_MAX)
 			return (-1);
-		else if (temp < MININT)
+		else if (temp < INT_MIN)
 			return (0);
 		value = value * 10 + (str[i++] - 48);
 	}

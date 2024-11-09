@@ -29,6 +29,20 @@ static size_t	word_count(const char *str, char c)
 	return (count);
 }
 
+static char	**free_strs(char **arr, int j)
+{
+	while (j > 0)
+		free (arr[--j]);
+	free (arr);
+	return (NULL);
+}
+
+static char	**dutty(char **arr, int j)
+{
+	arr[j] = NULL;
+	return (arr);
+}
+
 char	**ft_split(const char *str, char c)
 {
 	size_t	words;
@@ -39,7 +53,7 @@ char	**ft_split(const char *str, char c)
 	j = 0;
 	words = word_count(str, c);
 	str_arr = malloc((words + 1) * sizeof(char *));
-	if (!str_arr)
+	if (!str || !str_arr)
 		return (NULL);
 	while (*str && words-- > 0)
 	{
@@ -52,25 +66,8 @@ char	**ft_split(const char *str, char c)
 			poscount++;
 		}
 		str_arr[j] = ft_substr(str - poscount, 0, poscount);
-		j++;
+		if (!str_arr[j++])
+			return (free_strs(str_arr, j - 1));
 	}
-	str_arr[j] = NULL;
-	return (str_arr);
+	return (dutty(str_arr, j));
 }
-
-/*int	main(void)
-{
-	char	*str;
-	char	**arr;
-	int		i;
-
-	str = "Hello  World Moi";
-	i = 0;
-	arr = ft_split("   lorem  Suspendisse   ", ' ');
-	while (arr[i] != NULL)
-	{
-		printf("%s\n", arr[i]);
-		i++;
-	}
-	return (0);
-}*/

@@ -16,8 +16,8 @@
 # include <stdlib.h>
 # include <string.h>
 # include <unistd.h>
-# define MAXINT 2147483647
-# define MININT -2147483648
+# include <limits.h>
+# include <stdint.h>
 
 int		ft_atoi(const char *str);
 void	ft_bzero(void *str, size_t n);

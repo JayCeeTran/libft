@@ -16,16 +16,19 @@ void	*ft_calloc(size_t n, size_t size)
 {
 	void	*ptr;
 
+	if (n == 0 || size == 0)
+	{
+		ptr = malloc (1);
+		if (!ptr)
+			return (NULL);
+		ft_memset(ptr, 0, 1);
+		return (ptr);
+	}
+	if (n > SIZE_MAX / size)
+		return (NULL);
 	ptr = (void *) malloc (n * size);
 	if (!ptr)
 		return (NULL);
 	ft_memset(ptr, 0, n * size);
 	return (ptr);
 }
-
-/*int	main(void)
-{
-    int	*arr;
-    arr = ft_calloc(10, sizeof(int));
-    printf("%d\n", arr[6]);
-}*/
