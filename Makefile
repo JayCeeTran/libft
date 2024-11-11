@@ -50,28 +50,36 @@ SRCS =	ft_atoi.c \
 
 OBJ = $(SRCS:.c=.o)
 
+OSRCS = ft_lstnew_bonus.c \
+	ft_lstadd_front_bonus.c \
+	ft_lstadd_back_bonus.c \
+	ft_lstclear_bonus.c \
+	ft_lstdelone_bonus.c \
+	ft_lstiter_bonus.c \
+	ft_lstlast_bonus.c \
+	ft_lstmap_bonus.c \
+	ft_lstsize_bonus.c \	
+
+BOBJ = $(OSRCS:.c=.o)
+
 RM = rm -f
-TEST = testfile.c
 NAME = libft.a
-EXECU = a.exe
 
 all: $(NAME)
 
 $(NAME): $(OBJ)
 	ar rcs $(NAME) $(OBJ)
 
-test: $(EXECU)
-	.\a.exe
-
-$(EXECU): $(LIBFT) $(TEST)
-	cc $(TEST) -L. -lft -o $(EXECU)
+bonus: $(BOBJ) $(OBJ)
+	ar rcs $(NAME) $(BOBJ) $(OBJ)
 
 clean:
 	$(RM) $(OBJ)
 fclean: clean
 	$(RM) $(NAME) $(EXECU)
 
+re: fclean all
+
 so:
 	$(CC) -nostartfiles -fPIC $(CFLAGS) $(SRCS)
 	gcc -nostartfiles -shared -o libft.so $(OBJ)
-re: fclean all
