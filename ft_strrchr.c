@@ -6,7 +6,7 @@
 /*   By: jtran <jtran@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 12:36:15 by jtran             #+#    #+#             */
-/*   Updated: 2024/11/06 14:12:03 by jtran            ###   ########.fr       */
+/*   Updated: 2024/11/12 15:40:44 by jtran            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static int	count_ch(const char *str, int c)
 	charcount = 0;
 	while (*str != '\0')
 	{
-		if (*str == c)
+		if ((unsigned char) *str == (unsigned char) c)
 			charcount++;
 		str++;
 	}
@@ -39,7 +39,7 @@ char	*ft_strrchr(const char *str, int chr)
 		return (NULL);
 	while (str[i] != '\0')
 	{
-		if (str[i] == chr)
+		if ((unsigned char) str[i] == (unsigned char) chr)
 			pos_of_last_ch--;
 		if (pos_of_last_ch == 0)
 			return ((char *)&str[i]);
@@ -47,11 +47,3 @@ char	*ft_strrchr(const char *str, int chr)
 	}
 	return (NULL);
 }
-/*int	main(void)
-{
-	char	str[] = "bonjour";
-	char	*dest;
-	
-	dest = ft_strrchr(str, 's');
-	printf("%s\n", dest);
-}*/

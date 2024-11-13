@@ -1,29 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   ft_lstadd_back_bonus.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jtran <jtran@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/29 12:05:54 by jtran             #+#    #+#             */
-/*   Updated: 2024/11/12 15:37:28 by jtran            ###   ########.fr       */
+/*   Created: 2024/11/11 11:40:00 by jtran             #+#    #+#             */
+/*   Updated: 2024/11/12 12:19:55 by jtran            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strchr(const char *str, int search_str)
+void	ft_lstadd_back(t_list **lst, t_list *new)
 {
-	int	i;
+	t_list	*current;
 
-	i = 0;
-	while (str[i] != '\0')
+	current = *lst;
+	if (*lst == NULL)
 	{
-		if ((unsigned char) str[i] == ((unsigned char) search_str))
-			return ((char *)&str[i]);
-		i++;
+		*lst = new;
 	}
-	if (search_str == '\0')
-		return ((char *)&str[i]);
-	return (NULL);
+	else
+	{
+		while (current->next)
+		{
+			current = current->next;
+		}
+		current->next = new;
+	}
 }
+
+// printf("%s", (ptn) ? pnt : "NULL");

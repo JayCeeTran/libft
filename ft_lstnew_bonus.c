@@ -1,29 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   ft_lstnew_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jtran <jtran@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/29 12:05:54 by jtran             #+#    #+#             */
-/*   Updated: 2024/11/12 15:37:28 by jtran            ###   ########.fr       */
+/*   Created: 2024/11/12 12:19:30 by jtran             #+#    #+#             */
+/*   Updated: 2024/11/12 12:19:46 by jtran            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strchr(const char *str, int search_str)
+t_list	*ft_lstnew(void *content)
 {
-	int	i;
+	t_list	*newnode;
 
-	i = 0;
-	while (str[i] != '\0')
-	{
-		if ((unsigned char) str[i] == ((unsigned char) search_str))
-			return ((char *)&str[i]);
-		i++;
-	}
-	if (search_str == '\0')
-		return ((char *)&str[i]);
-	return (NULL);
+	newnode = malloc(sizeof(t_list));
+	if (!newnode)
+		return (NULL);
+	newnode->content = content;
+	newnode->next = NULL;
+	return (newnode);
 }

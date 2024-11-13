@@ -6,7 +6,7 @@
 /*   By: jtran <jtran@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 11:40:04 by jtran             #+#    #+#             */
-/*   Updated: 2024/11/07 12:34:12 by jtran            ###   ########.fr       */
+/*   Updated: 2024/11/12 14:56:32 by jtran            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,16 +58,15 @@ char	*ft_strtrim(const char *str, const char *set)
 	i = 0;
 	start = find_start(str, set);
 	end = find_end(str, set, ft_strlen(str));
-	if (*str == '\0')
-		return ((char *)str);
-	copy = malloc(end - start + 2);
-	if (!copy)
-		return (NULL);
-	if (start == end)
+	if (end == 0)
 	{
+		copy = malloc (1);
 		*copy = '\0';
 		return (copy);
 	}
+	copy = malloc(end - start + 2);
+	if (!copy)
+		return (NULL);
 	while (start <= end)
 	{
 		copy[i++] = str[start];

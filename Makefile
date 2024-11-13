@@ -50,7 +50,7 @@ SRCS =	ft_atoi.c \
 
 OBJ = $(SRCS:.c=.o)
 
-OSRCS = ft_lstnew_bonus.c \
+BONUS = ft_lstnew_bonus.c \
 	ft_lstadd_front_bonus.c \
 	ft_lstadd_back_bonus.c \
 	ft_lstclear_bonus.c \
@@ -58,9 +58,9 @@ OSRCS = ft_lstnew_bonus.c \
 	ft_lstiter_bonus.c \
 	ft_lstlast_bonus.c \
 	ft_lstmap_bonus.c \
-	ft_lstsize_bonus.c \	
+	ft_lstsize_bonus.c \
 
-BOBJ = $(OSRCS:.c=.o)
+OBJS_BONUS = $(BONUS:.c=.o)
 
 RM = rm -f
 NAME = libft.a
@@ -70,16 +70,17 @@ all: $(NAME)
 $(NAME): $(OBJ)
 	ar rcs $(NAME) $(OBJ)
 
-bonus: $(BOBJ) $(OBJ)
-	ar rcs $(NAME) $(BOBJ) $(OBJ)
+bonus: .bonus
+
+.bonus: $(OBJS_BONUS)
+	ar -rc $(NAME) $^
+	@touch .bonus
 
 clean:
-	$(RM) $(OBJ)
+	$(RM) $(OBJ) $(OBJS_BONUS)
+	$(RM) .bonus
+	
 fclean: clean
-	$(RM) $(NAME) $(EXECU)
+	$(RM) $(NAME)
 
 re: fclean all
-
-so:
-	$(CC) -nostartfiles -fPIC $(CFLAGS) $(SRCS)
-	gcc -nostartfiles -shared -o libft.so $(OBJ)

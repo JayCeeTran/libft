@@ -1,29 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   ft_lstmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jtran <jtran@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/29 12:05:54 by jtran             #+#    #+#             */
-/*   Updated: 2024/11/12 15:37:28 by jtran            ###   ########.fr       */
+/*   Created: 2024/11/11 13:21:19 by jtran             #+#    #+#             */
+/*   Updated: 2024/11/12 12:41:58 by jtran            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strchr(const char *str, int search_str)
+t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
-	int	i;
+	t_list	*node;
+	t_list	*new_lst;
 
-	i = 0;
-	while (str[i] != '\0')
+	new_lst = NULL;
+	if (!lst || !f || !del)
+		return (NULL);
+	while (lst)
 	{
-		if ((unsigned char) str[i] == ((unsigned char) search_str))
-			return ((char *)&str[i]);
-		i++;
+		node = ft_lstnew(f(lst->content));
+		if (!node)
+		{
+			ft_lstclear(&new_lst, del);
+			return (NULL);
+		}
+		ft_lstadd_back(&new_lst, node);
+		lst = lst->next;
 	}
-	if (search_str == '\0')
-		return ((char *)&str[i]);
-	return (NULL);
+	return (new_lst);
 }
